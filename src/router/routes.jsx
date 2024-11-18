@@ -1,5 +1,6 @@
 import Login from "../auth/Login";
 import SignUp from "../auth/SignUp";
+import BookListPage from "../components/BooklistPage";
 
 
 const routes = [
@@ -14,6 +15,10 @@ const routes = [
     {
         path: "/",
         element: <SignUp/>
+    },
+    {
+        path: "/booklist",
+        element: <BookListPage/>
     }
 ]
 

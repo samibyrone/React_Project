@@ -1,26 +1,40 @@
 import React, { useState } from "react";
 import style from "../styles/signup.module.css";
+import CustomButton from "../reuseables/CustomButton";
+import {Link, useNavigate} from "react-router-dom";
 
 const SignUp = () => {
 
-    const userDetails = {
-        username: "",
-        email: "",
-        password: "",
-    };
+  const navigate = useNavigate();
 
-    const [data, setData] = useState(userDetails)
+  const userDetails = {
+    username: "",
+    email: "",
+    password: "",
+  };
 
-    function handleChange(event) {
-        const [name, value] = event.target
-        setData((prevData) => {
-            
-        })
-    }
+  const [data, setData] = useState(userDetails)
+
+  function handleChange(event) {
+    const [name, value] = event.target
+    // setData((prevData) => ({...prevData, [name]:value}));
+    setData((prevData) => {
+    return {...prevData, [name]: value}
+    })
+  };
+
+  const handleSubmit = () => {
+    console.log("submitted ......");
+    // setTimeout(() => {
+      navigate("/login")
+    // }, 3000)
+  }
+
+  console.log(data)
 
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit} action="">
         <div>
           <input
             type="text"
@@ -49,7 +63,12 @@ const SignUp = () => {
             required
           />
         </div>
+        <CustomButton style={style.btn} type="submit" textContent="submit"/>
       </form>
+      <div>
+        <span>Already have an account?</span>
+        <span><Link to={'/login'}>Login</Link></span>
+      </div>
     </div>
   );
 };
